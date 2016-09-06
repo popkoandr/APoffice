@@ -1,0 +1,14 @@
+c:\users\zver\documents\visual studio 2015\Projects\APoffice\APoffice\bin\Debug\APoffice.exe.config
+c:\users\zver\documents\visual studio 2015\Projects\APoffice\APoffice\bin\Debug\APoffice.exe
+c:\users\zver\documents\visual studio 2015\Projects\APoffice\APoffice\bin\Debug\APoffice.pdb
+c:\users\zver\documents\visual studio 2015\Projects\APoffice\APoffice\obj\Debug\APoffice.csprojResolveAssemblyReference.cache
+c:\users\zver\documents\visual studio 2015\Projects\APoffice\APoffice\obj\Debug\MainWindow.g.cs
+c:\users\zver\documents\visual studio 2015\Projects\APoffice\APoffice\obj\Debug\App.g.cs
+c:\users\zver\documents\visual studio 2015\Projects\APoffice\APoffice\obj\Debug\APoffice_MarkupCompile.cache
+c:\users\zver\documents\visual studio 2015\Projects\APoffice\APoffice\obj\Debug\APoffice_MarkupCompile.lref
+c:\users\zver\documents\visual studio 2015\Projects\APoffice\APoffice\obj\Debug\MainWindow.baml
+c:\users\zver\documents\visual studio 2015\Projects\APoffice\APoffice\obj\Debug\APoffice.g.resources
+c:\users\zver\documents\visual studio 2015\Projects\APoffice\APoffice\obj\Debug\APoffice.Properties.Resources.resources
+c:\users\zver\documents\visual studio 2015\Projects\APoffice\APoffice\obj\Debug\APoffice.csproj.GenerateResource.Cache
+c:\users\zver\documents\visual studio 2015\Projects\APoffice\APoffice\obj\Debug\APoffice.exe
+c:\users\zver\documents\visual studio 2015\Projects\APoffice\APoffice\obj\Debug\APoffice.pdb
