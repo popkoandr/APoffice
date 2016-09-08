@@ -1,0 +1,40 @@
+﻿<Window x:Class="APoffice.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:APoffice.ViewModel"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.DataContext>
+        <local:EmployeeEditorViewModel/>
+    </Window.DataContext>
+    <Grid>
+        
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="101,107,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="160,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Path=CurrentEmployee.Name, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="101,132,0,0" TextWrapping="Wrap" Text="Surname" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="23" Margin="160,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Path=CurrentEmployee.Surname, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Button x:Name="button" Content="Apply" HorizontalAlignment="Left" Command="{Binding AddEmployee}" Margin="160,153,0,0" VerticalAlignment="Top" Width="120"/>
+
+        <ListBox x:Name="EmployeesListBox" SelectedItem="{Binding Path=EditingEmployee}"  ItemsSource="{Binding Path=Employees}" HorizontalAlignment="Left" Height="157" Margin="348,16,0,0" VerticalAlignment="Top" Width="123">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <i:InvokeCommandAction Command="{Binding StartEditing}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </ListBox>
+
+        <!--<ListBox Width="100" Height="100">
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="MouseDoubleClick">
+                <i:InvokeCommandAction Command="{Binding YourCommand}"/>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+        </ListBox>-->
+
+    </Grid>
+</Window>
