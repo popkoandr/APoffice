@@ -23,3 +23,4 @@ C:\Users\Zver\Documents\Visual Studio 2015\Projects\APoffice\APoffice\obj\Debug\
 C:\Users\Zver\Documents\Visual Studio 2015\Projects\APoffice\APoffice\obj\Debug\APoffice.csproj.GenerateResource.Cache
 C:\Users\Zver\Documents\Visual Studio 2015\Projects\APoffice\APoffice\obj\Debug\APoffice.exe
 C:\Users\Zver\Documents\Visual Studio 2015\Projects\APoffice\APoffice\obj\Debug\APoffice.pdb
+C:\Users\Zver\Documents\Visual Studio 2015\Projects\APoffice\APoffice\obj\Debug\APoffice.csprojResolveAssemblyReference.cache

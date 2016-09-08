@@ -50,14 +50,22 @@ namespace APoffice.ViewModel
             }
         }
 
+        ObservableCollection<Employee> _employees; 
+
         public ObservableCollection<Employee> Employees
         {
-            get { return EmployeeRepository.AllEmployees; }
+            get
+            {
+                if (_employees == null)
+                    _employees = EmployeeRepository.AllEmployees;
+                return _employees;
+
+            }
         }
 
        
 
-        #region Add/Apply Employee
+        #region Add Employee
 
         RelayCommand _addEmployeeCommand;
         public ICommand AddEmployee
@@ -71,9 +79,14 @@ namespace APoffice.ViewModel
         }
         public void ExecuteAddEmployeeCommand(object parameter)
         {
-            Employees.Add(CurrentEmployee);
+            if (Employees.Contains(CurrentEmployee))
+            {
+                //realize editing
+            }
+            else
+                Employees.Add(CurrentEmployee);
             CurrentEmployee = null;
-           // OnPropertyChanged("");
+          // OnPropertyChanged("Employees");
         }
 
         public bool CanExecuteAddEmployeeCommand(object parameter)
