@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,7 +38,7 @@ namespace APoffice.ViewModel
         {
             get
             {
-                if (_currentEmployee==null)
+               if (_currentEmployee==null)
                     _currentEmployee = new Employee();
                 return _currentEmployee;
 
@@ -79,6 +80,7 @@ namespace APoffice.ViewModel
         }
         public void ExecuteAddEmployeeCommand(object parameter)
         {
+            DatabaseManager.ConnectUserToDatebase();
             if (Employees.Contains(CurrentEmployee))
             {
                 //realize editing

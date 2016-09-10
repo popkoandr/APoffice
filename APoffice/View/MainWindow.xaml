@@ -11,16 +11,16 @@
         <local:EmployeeEditorViewModel/>
     </Window.DataContext>
     <Grid>
-        
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="101,107,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="160,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Path=CurrentEmployee.Name, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="101,132,0,0" TextWrapping="Wrap" Text="Surname" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="23" Margin="160,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Path=CurrentEmployee.Surname, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="16,10,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="65,9,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Path=CurrentEmployee.Name, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Button x:Name="button" Content="Apply" HorizontalAlignment="Left" Command="{Binding AddEmployee}" Margin="160,153,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="13,44,0,0" TextWrapping="Wrap" Text="Surname" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="23" Margin="65,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Path=CurrentEmployee.Surname, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <ListBox x:Name="EmployeesListBox" SelectedItem="{Binding Path=EditingEmployee}"  ItemsSource="{Binding Path=Employees}" HorizontalAlignment="Left" Height="157" Margin="348,16,0,0" VerticalAlignment="Top" Width="123">
+        <Button x:Name="button" Content="Apply" HorizontalAlignment="Left" Command="{Binding AddEmployee}" Margin="65,91,0,0" VerticalAlignment="Top" Width="120" Height="32"/>
+
+        <ListBox x:Name="EmployeesListBox" SelectedItem="{Binding Path=EditingEmployee}"  ItemsSource="{Binding Path=Employees}" HorizontalAlignment="Left" Height="114" Margin="201,9,0,0" VerticalAlignment="Top" Width="123">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDoubleClick">
                     <i:InvokeCommandAction Command="{Binding StartEditing}"/>
