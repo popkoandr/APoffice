@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Data.SqlClient;
+﻿using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using APoffice.Model;
@@ -13,58 +9,52 @@ using APoffice.ViewModel.ViewModelBase;
 
 namespace APoffice.ViewModel
 {
-    public class EmployeeEditorViewModel:Shell.ViewModels.VMBase.ViewModelBase
+    public class EmployeeEditorViewModel : Shell.ViewModels.VMBase.ViewModelBase
     {
         Employee _currentEmployee;
-        Employee _editingEmployee;
+        ObservableCollection<Employee> _employees;
 
-        public Employee EditingEmployee
-        {
-            get
-            {
-                //MessageBox.Show("get " + _editingEmployee);
-                return _editingEmployee;
-                
-            }
-            set
-            {
-                _editingEmployee = value;
-                //OnPropertyChanged("EditingEmployee"); //no need to say all that this was changed???
-               // MessageBox.Show("set " + _editingEmployee);
-            } 
-        } //
+        /// <summary>
+        /// Selected Employee in Listbox
+        /// </summary>
+        public Employee SelectedEmployee { get; set; }
 
+        /// <summary>
+        /// Employee that creating or changing 
+        /// </summary>
         public Employee CurrentEmployee
         {
             get
             {
-               if (_currentEmployee==null)
+                if (_currentEmployee == null)
                     _currentEmployee = new Employee();
                 return _currentEmployee;
-
             }
             set
             {
                 _currentEmployee = value;
-                OnPropertyChanged("CurrentEmployee");//says to all that property "CurrentEmployee" changed
-
+                OnPropertyChanged("CurrentEmployee");// says to all that property "CurrentEmployee" changed
             }
         }
 
-        ObservableCollection<Employee> _employees; 
-
+        /// <summary>
+        /// Binding Property for all Employee in Datebase
+        /// </summary>
         public ObservableCollection<Employee> Employees
         {
             get
             {
                 if (_employees == null)
-                    _employees = EmployeeRepository.AllEmployees;
-                return _employees;
+                {
+                    var db = new EmployeeContext();
+                    db.Employees.Load();
+                    _employees = db.Employees.Local;
 
+                }
+                return _employees;
             }
         }
 
-       
 
         #region Add Employee
 
@@ -73,24 +63,23 @@ namespace APoffice.ViewModel
         {
             get
             {
-                if(_addEmployeeCommand==null)
-                    _addEmployeeCommand = new RelayCommand(ExecuteAddEmployeeCommand,CanExecuteAddEmployeeCommand);
+                if (_addEmployeeCommand == null)
+                    _addEmployeeCommand = new RelayCommand(ExecuteAddEmployeeCommand, CanExecuteAddEmployeeCommand);
                 return _addEmployeeCommand;
             }
-        }
+        } 
         public void ExecuteAddEmployeeCommand(object parameter)
         {
-            DatabaseManager.ConnectUserToDatebase();
-            if (Employees.Contains(CurrentEmployee))
+            using (var db = new EmployeeContext())
             {
-                //realize editing
+                db.Employees.Add(CurrentEmployee);// add to db BUT dont update listBox!!!!!!!!!!!!!
+                db.SaveChanges();
             }
-            else
-                Employees.Add(CurrentEmployee);
+            MessageBox.Show("New user was added to Database");
             CurrentEmployee = null;
-          // OnPropertyChanged("Employees");
-        }
+            // _employees = null;  OnPropertyChanged("Employees");  - do this for realtime update list, but its not good
 
+        }
         public bool CanExecuteAddEmployeeCommand(object parameter)
         {
             if (string.IsNullOrEmpty(CurrentEmployee.Name) ||
@@ -102,28 +91,24 @@ namespace APoffice.ViewModel
 
         #region Edit existing employee
 
-        RelayCommand _startEditingEmployeeCommand;
-        
+        private RelayCommand _startEditingEmployeeCommand;
         public ICommand StartEditing
         {
             get
             {
-                if(_startEditingEmployeeCommand==null)
-                    _startEditingEmployeeCommand = new RelayCommand(ExecuteStartEditingCommand,CanExecuteStartEditingCommand);
+                if (_startEditingEmployeeCommand == null)
+                    _startEditingEmployeeCommand = new RelayCommand(ExecuteStartEditingCommand, CanExecuteStartEditingCommand);
                 return _startEditingEmployeeCommand;
             }
         }
 
         public void ExecuteStartEditingCommand(object parametr)
         {
-            CurrentEmployee = EditingEmployee;
+            CurrentEmployee = SelectedEmployee;
         }
 
         public bool CanExecuteStartEditingCommand(object parametr)
         {
-            //if (string.IsNullOrEmpty(CurrentEmployee.Name) ||
-            //    string.IsNullOrEmpty(CurrentEmployee.Surname))
-            //    return false;
             return true;
         }
         #endregion

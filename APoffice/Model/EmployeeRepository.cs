@@ -9,28 +9,28 @@ namespace APoffice.Model
 {
     public static class EmployeeRepository
     {
-        private static ObservableCollection<Employee> _employees;
+        //private static ObservableCollection<Employee> _employees;
 
-        public static ObservableCollection<Employee> AllEmployees
-        {
-            get
-            {
-                if (_employees == null)
-                    _employees = GenerateEmployeeRepository();
-                return _employees;
-            }
+        //public static ObservableCollection<Employee> AllEmployees
+        //{
+        //    get
+        //    {
+        //        if (_employees == null)
+        //            _employees = GenerateEmployeeRepository();
+        //        return _employees;
+        //    }
 
-        }
+        //}
 
-        private static ObservableCollection<Employee> GenerateEmployeeRepository()
-        {
-            var employee = new ObservableCollection<Employee>
-            {
-                new Employee("Andrew", "Popko"),
-                new Employee("Valentyn", "Popko"),
-                new Employee("Nataliia", "Popko")
-            };
-            return employee;
-        }  
+        //private static ObservableCollection<Employee> GenerateEmployeeRepository()
+        //{
+        //    var employee = new ObservableCollection<Employee>
+        //    {
+        //        new Employee("Andrew", "Popko"),
+        //        new Employee("Valentyn", "Popko"),
+        //        new Employee("Nataliia", "Popko")
+        //    };
+        //    return employee;
+        //}  
     }
 }

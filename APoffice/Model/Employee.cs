@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.Remoting.Contexts;
@@ -11,12 +12,16 @@ namespace APoffice.Model
 {
     public class Employee
     {
-        private Guid _userId;
-        public Guid UserId { get; private set; }
+        
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Patronymic { get; set; }
-        public DateTime DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
+
+        public Guid? BranchId { get; set; }
+        public Branch Branch { get; set; }
+
 
         #region test static costruct
         ////public static int Numb;
@@ -28,17 +33,14 @@ namespace APoffice.Model
 #endregion
         public Employee()
         {
-            UserId = SequentialGuidGenerator.CreateGuid();
-            //Name = "qqqqq";
-            //Surname = "aaaaa";
-
+             Id = SequentialGuidGenerator.CreateGuid();
         }
 
         public Employee(string name, string surname):this()
         {
             Name = name;
             Surname = surname;
-            MessageBox.Show(UserId.ToString() + Name);
+            MessageBox.Show(Id.ToString() + Name);
 
         }
         //public void ShowInfo()

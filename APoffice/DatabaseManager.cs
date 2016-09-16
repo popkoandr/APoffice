@@ -1,13 +1,4 @@
-﻿#define SetProperty
-
-
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Configuration;
+﻿//#define SetProperty
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows;
@@ -40,42 +31,43 @@ namespace APoffice
         /// </summary>
         public static void ConnectUserToDatebase()
         {
-#if SetProperty
-            var connectionStringBuilder = new SqlConnectionStringBuilder
-            {
-                Pooling = true,
-                DataSource = @".\SQLEXPRESS",
-                InitialCatalog = "APofficeDB",
-                UserID = "Andrew",
-                Password = "22"
-            }; // создание конструктора строк подключения 
-            // используйте конструктор строк подключения для 
-            // предотвращения изменения пользователем структуры строки подключения
-#else
-            var connectionStringBuilder = new SqlConnectionStringBuilder();
-            connectionStringBuilder["Data Source"] = @".\SQLEXPRESS";   // используйте конструктор строк подключения для 
-            connectionStringBuilder["Initial Catalog"] = "APofficeDB";      // предотвращения изменения пользователем структуры строки подключения
-            connectionStringBuilder["User ID"] = "Andrew";//
-            connectionStringBuilder["Password"] = "22";//
-#endif
-            // test open connection to db
-            using (SqlConnection connection = new SqlConnection(connectionStringBuilder.ConnectionString))
-            {
-                try
-                {
-                    connection.StateChange += ConnectionStateChange;
-                    connection.Open();
-                    CurrentConnection = connection;// set Current connection Property 
-                    MessageBox.Show("Connection opened to " + connection.Database);
+//#if SetProperty
+//            var connectionStringBuilder = new SqlConnectionStringBuilder
+//            {
+//                Pooling = true,
+//                DataSource = @".\SQLEXPRESS",
+//                InitialCatalog = "APofficeDB",
+//                UserID = "Andrew",
+//                Password = "22"
+//            }; // создание конструктора строк подключения 
+//            // используйте конструктор строк подключения для 
+//            // предотвращения изменения пользователем структуры строки подключения
+//#else
+//            var connectionStringBuilder = new SqlConnectionStringBuilder();
+//            connectionStringBuilder["Data Source"] = @".\SQLEXPRESS";   // используйте конструктор строк подключения для 
+//            connectionStringBuilder["Initial Catalog"] = "APofficeDB";      // предотвращения изменения пользователем структуры строки подключения
+//            connectionStringBuilder["User ID"] = "Andrew";//
+//            connectionStringBuilder["Password"] = "22";//
+//#endif
+//            // test open connection to db
+//            using (SqlConnection connection = new SqlConnection(connectionStringBuilder.ConnectionString))
+//            {
+//                try
+//                {
+//                    connection.StateChange += ConnectionStateChange;
+//                    connection.Open();
+//                    CurrentConnection = connection; // set Current connection Property 
+//                    MessageBox.Show("Connection opened to " + connection.Database);
 
-                }
-                catch (Exception exception)
-                {
-                    MessageBox.Show(exception.Message);
-                }
+//                }
+//                catch (Exception exception)
+//                {
+//                    MessageBox.Show(exception.Message);
+//                }
+//            }
+        }
 
-            }
-                #region How to use config file
+        #region How to use config file
             ///////////////////////////////////////////////////////////////////
             //var setting = new ConnectionStringSettings
             //{
@@ -95,7 +87,7 @@ namespace APoffice
             //// Получение строки подключения.
             //MessageBox.Show(ConfigurationManager.ConnectionStrings["APoffice_ConnectionString"].ConnectionString);
 
-        }
+        
         #endregion
         /// <summary>
         /// Event Handling method for connection state chenge
