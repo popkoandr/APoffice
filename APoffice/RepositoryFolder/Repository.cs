@@ -19,7 +19,6 @@ namespace APoffice.RepositoryFolder
         {
             return Context.Set<TEntity>().Find(id);
         }
-
         public IEnumerable<TEntity> GetAll()// doesn`t return IQueryale
         {
             return Context.Set<TEntity>().ToList();
@@ -34,7 +33,6 @@ namespace APoffice.RepositoryFolder
         {
             Context.Set<TEntity>().Add(entity);
         }
-
         public void AddRange(IEnumerable<TEntity> entities)
         {
             Context.Set<TEntity>().AddRange(entities);
@@ -45,7 +43,6 @@ namespace APoffice.RepositoryFolder
         {
             Context.Set<TEntity>().Remove(entity);
         }
-
         public void RemoveRange(IEnumerable<TEntity> entities)
         {
             Context.Set<TEntity>().RemoveRange(entities);

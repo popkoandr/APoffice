@@ -6,8 +6,8 @@ namespace APoffice.RepositoryFolder
 {
     public interface IEmployeeRepository:IRepository<Employee>
     {
-        IEnumerable<Employee> GetTopEmployee(int count);
-        IEnumerable<Employee> GetEmployeesWithBranch();
+        IEnumerable<Employee> GetTopCountEmployees(int count);
+        IEnumerable<Employee> GetBySurnameEmployees(string surname);
 
     }
 }

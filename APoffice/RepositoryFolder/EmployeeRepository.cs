@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Data.Entity;
 using APoffice.Model;
 using APoffice.ViewModel;
-using System.Data.Entity;
 using System.Linq;
 
 namespace APoffice.RepositoryFolder
@@ -13,7 +11,7 @@ namespace APoffice.RepositoryFolder
         {
         }
 
-        public EmployeeContext EmployeeContext//syntax sugar
+        public EmployeeContext EmployeeContext//
         {
             get
             {
@@ -21,16 +19,14 @@ namespace APoffice.RepositoryFolder
             }
         }
 
-        public IEnumerable<Employee> GetTopEmployee(int count)
+        public IEnumerable<Employee> GetTopCountEmployees(int count)
         {
-            
             return EmployeeContext.Employees.Take(count).ToList();
         }
-
-        public IEnumerable<Employee> GetEmployeesWithBranch()
+       
+        public IEnumerable<Employee> GetBySurnameEmployees(string surname)
         {
-            return EmployeeContext.Employees.Include(x => x.Branch).ToList();
+            return EmployeeContext.Employees.Where(e=>e.Surname==surname);
         }
-        
     }
 }
