@@ -26,6 +26,7 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </ListBox>
+        <Button x:Name="RefreshListBtn" Content="Refresh" HorizontalAlignment="Left" Command="{Binding AddEmployee}" Margin="201,178,0,0" VerticalAlignment="Top" Width="183" Height="32"/>
 
         <!--<ListBox Width="100" Height="100">
         <i:Interaction.Triggers>

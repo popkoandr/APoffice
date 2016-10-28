@@ -6,15 +6,18 @@ using System.Linq.Expressions;
 
 namespace APoffice.RepositoryFolder
 {
+    //2nd  - implement interface on base generic class  
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
+        //dependency field
         protected readonly DbContext Context;
 
+        //inject depyndency through constructor
         public Repository(DbContext context)
         {
             Context = context;
         }
-
+        #region Methods
         public TEntity Get(Guid id)
         {
             return Context.Set<TEntity>().Find(id);
@@ -47,5 +50,6 @@ namespace APoffice.RepositoryFolder
         {
             Context.Set<TEntity>().RemoveRange(entities);
         }
+        #endregion
     }
 }

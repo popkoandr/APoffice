@@ -4,6 +4,7 @@ using System.Linq.Expressions;
 
 namespace APoffice.RepositoryFolder
 {
+    //1st - define basic (common) methods for all repositories
     public interface IRepository<TEntity> where TEntity:class
     {
         TEntity Get(Guid id);

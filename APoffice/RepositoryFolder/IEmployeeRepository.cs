@@ -5,13 +5,11 @@ using APoffice.Model;
 
 namespace APoffice.RepositoryFolder
 {
+    // 3rd - interface for defining methods of concrete employee repository 
     public interface IEmployeeRepository:IRepository<Employee>
     {
         IEnumerable<Employee> GetTopCountEmployees(int count);
         IEnumerable<Employee> GetBySurnameEmployees(string surname);
         
-       // IQueryable<Branch> GetBranches
-        void SGetBranches();
-
     }
 }

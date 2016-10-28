@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading;
 using System.Windows;
 using System.Windows.Input;
 using APoffice.Model;
@@ -48,8 +49,10 @@ namespace APoffice.ViewModel
             {
                 if (_employees == null)
                 {
-                    var unitOfWork = new UnitOfWork(new EmployeeContext());
-                    _employees = new ObservableCollection<Employee>(unitOfWork.Employees.GetAll());// using Repository
+                    using (var unitOfWork = new UnitOfWork(new EmployeeContext()))
+                    {
+                        _employees = new ObservableCollection<Employee>(unitOfWork.Employees.GetAll());// using Repository
+                    }
                     //var db = new EmployeeContext();
                     //db.Employees.Load();
                     //_employees = db.Employees.Local;
@@ -70,7 +73,7 @@ namespace APoffice.ViewModel
                     _addEmployeeCommand = new RelayCommand(ExecuteAddEmployeeCommand, CanExecuteAddEmployeeCommand);
                 return _addEmployeeCommand;
             }
-        } 
+        }
         public void ExecuteAddEmployeeCommand(object parameter)
         {
             using (var unitOfWork = new UnitOfWork(new EmployeeContext()))
@@ -79,38 +82,25 @@ namespace APoffice.ViewModel
                 {
                     unitOfWork.Employees.Add(CurrentEmployee);
                     unitOfWork.Complete();
-                    //MessageBox.Show("Added");
-                    
-                    
-                   // MessageBox.Show("recieve count =  " + unitOfWork.Employees.GetTopCountEmployees(3).Count());
-
-                  //  MessageBox.Show("With surname Popko count = " +
-                                   // unitOfWork.Employees.GetBySurnameEmployees("Popko").Count());
-                    unitOfWork.Employees.SGetBranches();
                 }
                 catch (Exception)
                 {
-                    
+
                     throw;
                 }
-               
+
             }
             CurrentEmployee = null;
-            //using (var db = new EmployeeContext())
-            //{
-            //    db.Employees.Add(CurrentEmployee);// add to db BUT dont update listBox!!!!!!!!!!!!!
-            //    db.SaveChanges();
-            //}
-            //  MessageBox.Show("New user was added to Database");
-
             // _employees = null;  OnPropertyChanged("Employees");  - do this for realtime update list, but its not good
-
         }
         public bool CanExecuteAddEmployeeCommand(object parameter)
         {
             if (string.IsNullOrEmpty(CurrentEmployee.Name) ||
                 string.IsNullOrEmpty(CurrentEmployee.Surname))
+            {
+
                 return false;
+            }
             return true;
         }
         #endregion
