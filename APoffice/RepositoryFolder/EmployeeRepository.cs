@@ -2,6 +2,7 @@
 using APoffice.Model;
 using APoffice.ViewModel;
 using System.Linq;
+using System.Windows;
 
 namespace APoffice.RepositoryFolder
 {
@@ -28,5 +29,20 @@ namespace APoffice.RepositoryFolder
         {
             return EmployeeContext.Employees.Where(e=>e.Surname==surname);
         }
+        /// <summary>
+        /// test query
+        /// </summary>
+        public void SGetBranches()
+        {
+            IEnumerable<Branch> x = from emp in EmployeeContext.Employees
+                                    where emp.Name == "Andrew"
+                join branche in EmployeeContext.Branchs on emp.BranchId equals branche.Id
+                where branche.CityName =="Kiev"
+                orderby emp.Name descending
+                select branche;
+            MessageBox.Show(x.Count().ToString());
+
+        }
+
     }
 }

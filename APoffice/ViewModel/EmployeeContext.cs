@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
+using System.Windows;
 using APoffice.Model;
 using APoffice.ViewModel;
 
@@ -12,7 +14,6 @@ namespace APoffice.ViewModel
 
         public EmployeeContext() : base("EmloyeeModel")
         {}
-
         static EmployeeContext()// for not empty initialize of DB
         {
             Database.SetInitializer(new MyEmployeeContextInitializer());
@@ -42,5 +43,6 @@ class MyEmployeeContextInitializer:DropCreateDatabaseAlways<EmployeeContext>
 
         context.Employees.AddRange(new List<Employee>() {e1, e2, e3, e4, e5, e6, e7});
         context.SaveChanges();
+        MessageBox.Show($"Users add to db with COUNT = {context.Employees.Count()}");
     }
 }

@@ -19,7 +19,7 @@
 
         <Button x:Name="button" Content="Apply" HorizontalAlignment="Left" Command="{Binding AddEmployee}" Margin="65,91,0,0" VerticalAlignment="Top" Width="120" Height="32"/>
 
-        <ListBox x:Name="EmployeesListBox" SelectedItem="{Binding Path=SelectedEmployee}"  ItemsSource="{Binding Path=Employees}" HorizontalAlignment="Left" Height="114" Margin="201,9,0,0" VerticalAlignment="Top" Width="123">
+        <ListBox x:Name="EmployeesListBox" SelectedItem="{Binding Path=SelectedEmployee}" ItemsSource="{Binding Path=Employees}" HorizontalAlignment="Left" Height="164" Margin="201,9,0,0" VerticalAlignment="Top" Width="183">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDoubleClick">
                     <i:InvokeCommandAction Command="{Binding StartEditing}"/>

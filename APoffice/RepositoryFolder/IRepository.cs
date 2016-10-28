@@ -7,7 +7,6 @@ namespace APoffice.RepositoryFolder
     public interface IRepository<TEntity> where TEntity:class
     {
         TEntity Get(Guid id);
-                                        // what is ienumrable
         IEnumerable<TEntity> GetAll();
         IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);//for lambda expression (LINQ)
 

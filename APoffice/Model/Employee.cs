@@ -40,7 +40,7 @@ namespace APoffice.Model
         {
             Name = name;
             Surname = surname;
-            MessageBox.Show(Id.ToString() + Name);
+           // MessageBox.Show(Id.ToString() + Name);
 
         }
         //public void ShowInfo()

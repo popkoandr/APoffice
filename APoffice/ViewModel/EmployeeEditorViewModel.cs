@@ -78,14 +78,15 @@ namespace APoffice.ViewModel
                 try
                 {
                     unitOfWork.Employees.Add(CurrentEmployee);
-                    MessageBox.Show("Added");
-
+                    unitOfWork.Complete();
+                    //MessageBox.Show("Added");
                     
-                    MessageBox.Show("recieve count =  " + unitOfWork.Employees.GetTopCountEmployees(3).Count());
+                    
+                   // MessageBox.Show("recieve count =  " + unitOfWork.Employees.GetTopCountEmployees(3).Count());
 
-                    MessageBox.Show("With surname Popko count = " +
-                                    unitOfWork.Employees.GetBySurnameEmployees("Popko").Count());
-
+                  //  MessageBox.Show("With surname Popko count = " +
+                                   // unitOfWork.Employees.GetBySurnameEmployees("Popko").Count());
+                    unitOfWork.Employees.SGetBranches();
                 }
                 catch (Exception)
                 {
@@ -94,13 +95,14 @@ namespace APoffice.ViewModel
                 }
                
             }
+            CurrentEmployee = null;
             //using (var db = new EmployeeContext())
             //{
             //    db.Employees.Add(CurrentEmployee);// add to db BUT dont update listBox!!!!!!!!!!!!!
             //    db.SaveChanges();
             //}
-            MessageBox.Show("New user was added to Database");
-            CurrentEmployee = null;
+            //  MessageBox.Show("New user was added to Database");
+
             // _employees = null;  OnPropertyChanged("Employees");  - do this for realtime update list, but its not good
 
         }
